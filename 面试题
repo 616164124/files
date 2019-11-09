@@ -1,0 +1,298 @@
+mvc优势
+1.MVC是什么  MVC有什么优点？
+
+M就是model(模型)，V就是view(视图)，C就是Contral(控制器)
+
+  模型就是封业务逻辑和数据的一个一个的模块,控制器就是调用这些模块的(java中通常是用Servlet来实现,视图就主要是浏览器上看到的,
+比如JSP等.
+Mvc使得代码的可利用性升高，并且当三个部分中某一个需要做改变的时候，那么只需要改变那一部分的代码而不需要各个部分的代码都变动，
+将视图层和业务逻辑层分开了。
+2、springmvc原理
+（1）客户端（浏览器）发送请求，直接请求到DispatcherServlet。
+
+（2）DispatcherServlet根据请求信息调用HandlerMapping，解析请求对应的Handler。
+
+（3）解析到对应的Handler后，开始由HandlerAdapter适配器处理。
+
+（4）HandlerAdapter会根据Handler来调用真正的处理器开处理请求，并处理相应的业务逻辑。
+
+（5）处理器处理完业务后，会返回一个ModelAndView对象，Model是返回的数据对象，View是个逻辑上的View。
+
+（6）ViewResolver会根据逻辑View查找实际的View。
+
+（7）DispaterServlet把返回的Model传给View。
+
+（8）通过View返回给请求者（浏览器）
+
+3、spring的核心 优点、 容器对事务管理的类型
+核心：IOC(控制反转)，DI(依赖注入)，AOP（面向切面编程）。
+优点：1、非侵入式设计
+Spring是一种非侵入式（non-invasive）框架，它可以使应用程序代码对框架的依赖最小化。
+2、方便解耦、简化开发
+Spring就是一个大工厂，可以将所有对象的创建和依赖关系的维护工作都交给Spring容器的管理，大大的降低了组件之间的耦合性。
+3、支持AOP
+Spring提供了对AOP的支持，它允许将一些通用任务，如安全、事物、日志等进行集中式处理，从而提高了程序的复用性。
+4、支持声明式事务处理
+只需要通过配置就可以完成对事物的管理，而无须手动编程。
+5、方便程序的测试
+Spring提供了对Junit4的支持，可以通过注解方便的测试Spring程序。
+6、方便集成各种优秀框架
+Spring不排斥各种优秀的开源框架，其内部提供了对各种优秀框架（如Struts、Hibernate、MyBatis、Quartz等）的直接支持。
+7、降低Jave EE API的使用难度。
+Spring对Java EE开发中非常难用的一些API（如JDBC、JavaMail等），都提供了封装，使这些API应用难度大大降低。
+pring这个有两大概念：IOC和AOP
+IOC反转控制（也可以叫DI依赖注入，其实都是一个意思，角度不同而已），
+就是之前对象依赖关系不用你来维护，由IOC容器来维护（对象间依赖关系不用解释了吧，就是类与类之间的依赖关系，使用与被使用。举个例子电器工作需要电，电器类与电类之间是依赖关系，之前这些要你自己去完成它们的依赖关系，有了IOC容器这工作就就交给IOC容器来完成。）
+在白话一点解释，两个实例依赖关系，像两个人，一个人要另一个人帮助，没有spring的时候A要自己去联系B“来帮帮忙”，有了spring后，实例就不需要自己去创建依赖的实例，被调用依赖的实例自己就过来帮忙了。
+
+AOP也很好理解，面向切面编程，就是把一些公共的功能提取出来，到你用的时候你从容器中拿出对象直接用就可以了。像什么日志，解析XML文件什么的，用的时候调出来就可以，不是那种做到哪一步该要做什么就要自己去写怎么实现。
+
+优点：
+有了IOC容器，对象间依赖关系交给spring，更专注业务逻辑代码。
+有了AOP对应OOP，很多功能更方便简单使用
+像一个胶水一样，把一些好的框架粘合在一起方便实用（数据方面使用MyBatis，controller选择struts2，直接用spring粘在一起使用。）
+
+缺点：
+对比新出的springboot，肯定没人家好用（这是知乎的一个解释，觉得有道理）
+spring像一个胶水，将框架黏在一起，后面拆分的话就不容易拆分了（这是面试官的一个回答解释，表示是一个思路。）
+springJSP代码过多，过于灵活缺乏一个公用的控制器，不适合分布式（这个是CSDN上几个博客说的，不知道谁抄谁的，
+					前半部分不说，后面的分布式你知道spring boot ，spring cloud吗，这都是什么时候的事了。）
+
+
+容器对事务的管理类型：编程式事务，声明式事务
+
+4、cookie与session的区别？？
+1、共同点：
+    
+    都是为了记录用户的状态。
+
+2、不同点：
+    ①在存储方面：Cookie保存在客户端浏览器中，而Session保存在服务器上。Cookie中只能保管ASCII字符串，而Session中能够存取任何类型的数据。
+    ②在生命周期方面：cookie是通过maxAge设置过期时间。若设置了过期时间，浏览器就会把cookie保存到硬盘上，关闭后再次打开浏览器，这些cookie仍然有效直到超过设定的过期时间。Session在用户第一次访问服务器的时候自动创建。Session生成后, 只要用户继续访问，服务器就会更新Session的最后访问时间，并维护该Session。(有点类似缓存控制算法LRU) 为防止内存溢出，服务器会把长时间内没有活跃的Session从内存删除。这个时间就是Session的超时时间。如果超过了超时时间没访问过服务器，Session就自动失效了。
+    ③依赖方面：Session保存在服务器，对客户端是透明的，它的正常运行仍然需要客户端浏览器的支持。并且在识别是否是同一浏览器方面：服务器向客户端浏览器发送一个名为JSESSIONID的Cookie，Session依据该Cookie来识别是否为同一用户。
+    ④隐私策略方面：Cookie存储在客户端阅读器中，对客户端是可见的，客户端的一些程序可能会窥探、复制以至修正Cookie中的内容。而Session存储在服务器上，对客户端是透明的，不存在敏感信息泄露的风险。
+    ⑤跨域支持上的不同：Cookie支持跨域名访问，Session仅在他所在的域名内有效。
+3、优点：
+    一、Cookie
+        ①极高的扩展性和可用性。
+        ②可配置到期规则 Cookie 可以在浏览器会话结束时到期，或者可以在客户端计算机上无限期存在，这取决于客户端的到期规则。
+        ③不需要使用大量服务器资源，Cookie 存储在客户端并在发送后由服务器读取
+        ④简单性 Cookie 是一种基于文本的轻量结构，包含简单的键值对，结构简单
+    二、Session
+        ①易于读写的特性
+        ②易于站点的用户化
+4、缺点：
+    一、Cookie
+        ①Cookie数量和长度的限制。每个domain最多只能有20条cookie，每个cookie长度不能超过4KB，否则会被截掉
+        ②潜在的安全风险 Cookie 可能会被篡改
+    二、Session
+        ①依托性。如果某用户将浏览器设置为不兼容任何cookie，那么该用户就无法使用这个Session变量
+        ②session会在一定时间内保存在服务器上。当访问增多，会比较占用较大的服务器性能
+ 5、一般的攻击方式
+    一、Cookie
+        ①直接访问Cookie文件查找想要的机密信息；
+        ②在客户端和服务端进行Cookie信息传递时候进行截取，进而冒充合法用户进行操作；
+        ③. 攻击者修改Cookie信息，所以在服务端接收到客户端获取的Cookie信息的时候，就会对攻击者伪造过的Cookie信息进行操作
+        解决方案：
+            不要在Cookie中保存敏感信息；
+            不要在Cookie中保存没有经过加密的或者容易被解密的敏感信息；
+            对从客户端取得的Cookie信息进行严格校验；
+            使用SSL/TLS来传递Cookie信息。        
+    二、Session
+        ①会话劫持（通过获取用户Session ID后，使用该Session ID登录目标账号的攻击方法）
+            解决方案： 使用User-Agent检测请求的一致性；设置HttpOnly，可以防止客户端脚本访问这个Cookie，从而有效的防止XSS攻击；关闭透明化Session ID；更改Session名称
+        ②会话固定（诱骗受害者使用攻击者指定的会话标识（Session ID）的攻击手段）
+            解决方案：用户登录时生成新的Session ID；以及上诉的一些解决方案
+sql注入防范
+	sql采用预编译语句集，它内置了处理SQL注入的能力，只要使用它的setXXX方法传值即可。
+
+使用好处：
+
+     (1).代码的可读性和可维护性.
+
+     (2).PreparedStatement尽最大可能提高性能.
+
+     (3).最重要的一点是极大地提高了安全性.
+
+原理：
+sql注入只对sql语句的准备(编译)过程有破坏作用
+而PreparedStatement已经准备好了,执行阶段只是把输入串作为数据处理,
+而不再对sql语句进行解析,准备,因此也就避免了sql注入问题.
+
+
+
+spring注入方式：
+，spring的管理机制Bean工厂已经把对象创建好了 你只需要调用就行！方式有构造器注入，setter注入，
+注解方式：
+@Component：可以用于注册所有bean
+@Repository：主要用于注册dao层的bean
+@Controller：主要用于注册控制层的bean
+@Service：主要用于注册服务层的bean
+
+
+面向对象编程的特征：
+面向对象编程有四个特征：抽象，封装，继承，多态。
+封装，也就是把客观事物封装成抽象的类，并且类可以把自己的数据和方法只让可信的类或者 对象操作，对不可信的进行信息隐藏。
+继承是指使用现有类的所有功能，并在无需重新编写原来的类的情况下对这些功能进行扩展。
+通过继承创建的新类称为“子类”或“派生类”。被继承的类称为“基类”、“父类”或“超类”。
+继承的过程，就是从一般到特殊的过程。要实现继承，可以通过“继承”（Inheritance）和“组 合”（Composition）来实现。在某些 OOP 语言中，一个子类可以继承多个基类。但是一般情 况下，一个子类只能有一个基类，要实现多重继承，可以通过多级继承来实现。
+多态有四种体现形式：（JAVA多态的具体体现）
+1. 接口和接口的实现。
+2. 类和类的继承。
+3. 重载：重载发生在同一个类中，在该类中如果存在多个同名方
+法，但是方法的参数类型和个数不一样，那么说明该方法被重
+载了。
+4. 重写：重写发生在子类继承父类的关系中，父类中的方法被子
+类继承，方法名，返回值类型，参数完全一样，但是方法体不
+一样，那么说明父类中的该方法被子类重写了。
+
+
+
+web跳转的两种方式和区别？？
+转发与重定向
+共同点： 都实现了根据自己的条件实现的页面的跳转。
+区别：
+I.Redirect
+II.概念：URL重新定向：可以是任意的URL
+III.共享数据：不能共享request里面的数据
+IV.应用：一般用于用户注销登录时返回主页面和跳转到其它的网站等等
+
+redirect是服务器收到请求后发送一个状态头给客户，客户将再请求一次，这里多了两次网络通信的来往。当然forward也有缺点，
+就是forward的页面的路径如果是相对路径就会有些问题了。
+Redirect后，是开始了一个新的Http请求，因此地址栏是redirect后的地址。
+
+I.Forward
+II.概念：页面的转发：只能是同一个Web应用程序的其他Web组件
+III.共享数据：转发页面和转发到的页面可以共性request里面的数据
+IV.应用：一般用于用户登录的时候根据角色转发到相应的模块等等
+
+forward是服务器内部重定向，程序收到请求后重新定向到另一个程序，客户机并不知道；
+forward后，地址栏显示的信息不改变。forward保存了相关的状态信息，而redirect不保存信息。
+
+
+
+web会话跟踪的实现的方式？？
+会话跟踪是一种灵活、轻便的机制，它使Web上的状态编程变为可能。
+HTTP是一种无状态协议，每当用户发出请求时，服务器就会做出响应，客户端与服务器之间的联系是离散的、非连续的。当用户在同一网站的多个页面之间转换时，根本无法确定是否是同一个客户，会话跟踪技术就可以解决这个问题。当一个客户在多个页面间切换时，服务器会保存该用户的信息。
+有四种方法可以实现会话跟踪技术：URL重写、隐藏表单域、Cookie、Session。
+1）.隐藏表单域：<input type="hidden">，非常适合步需要大量数据存储的会话应用。
+2）.URL 重写:URL 可以在后面附加参数，和服务器的请求一起发送，这些参数为名字/值对。
+3）.Cookie:一个 Cookie 是一个小的，已命名数据元素。服务器使用 SET-Cookie 头标将它作为 HTTP
+响应的一部分传送到客户端，客户端被请求保存 Cookie 值，在对同一服务器的后续请求使用一个
+Cookie 头标将之返回到服务器。与其它技术比较，Cookie 的一个优点是在浏览器会话结束后，甚至
+在客户端计算机重启后它仍可以保留其值
+4）.Session：使用 setAttribute(String str,Object obj)方法将对象捆绑到一个会话
+
+web配置一种全局的错误处理？？？
+
+创建全局异常处理类：通过使用@ControllerAdvice定义统一的异常处理类，而不是在每个Controller中逐个定义。
+@ExceptionHandler用来定义函数针对的异常类型，
+最后将Exception对象和请求URL映射到error.html中
+
+
+
+get和post的区别？？？
+GET - 从指定的资源请求数据。
+POST - 向指定的资源提交要被处理的数据
+
+
+
+css引入的方式？？？？
+
+（1）内嵌式
+通过<style></style>来书写CSS代码
+（2）外联式
+通过<link>标记来引入外部的CSS文件(.css)。
+（3）行内样式
+通过style的属性来书写CSS代码。例如 <p style=“font-size:24px;”></p>
+
+
+link和@import的区别？？？？？
+1.Link属于html标签，而@import是CSS中提供的
+2.在页面加载的时候，link会同时被加载，而@import引用的CSS会在页面加载完成后才会加载引用的CSS
+3.@import只有在ie5以上才可以被识别，而link是html标签，不存在浏览器兼容性问题
+4.Link引入样式的权重大于@import的引用（@import是将引用的样式导入到当前的页面中）
+
+
+iframe的特点？？？？？
+iframe的优点：
+①　iframe能够原封不动地把嵌入的网页展现出来。
+②　如果有多个网页调用iframe，只需要修改iframe的内容，就可以实现对调用iframe的每一个页面内容的更改，方便快捷。
+③　网页如果为了统一风格，头部和版本都是一样的，就可以写成一个页面，用iframe来嵌套，可以增加代码的可重用性。
+④　如果遇到加载缓慢的第三方内容，如图标和广告等，可以用iframe来解决。
+iframe的缺点：
+①　会产生很多页面，不容易管理。
+②　在几个框架中都出现上下、左右滚动条时，这些滚动条除了会挤占已经非常有限的页面空间外，还会分散访问者的注意力。
+③　使用框架结构时，必须保证正确设置所有的导航链接，否则会给访问者带来很大的麻烦。比如被链接的页面出现在导航框架内，这种情况下会导致链接死循环。
+④　很多的移动设备（PDA手机）无法完全显示框架，设备兼容性差。
+⑤　iframe框架页面会增加服务器的http请求，对于大型网站是不可取的。
+
+
+实现浏览器内多个标签页之间的通信？？？？
+使用localStorage
+使用localStorage.setItem(key,value);添加内容
+使用storage事件监听添加、修改、删除的动作 
+
+ public static void main(String[] args) {
+        int array[] = {11, 23, 54, 65, 76, 13, 55, 66, 70, 98, 30, 99, 103};
+        //将数组排序
+        Arrays.sort(array);
+        System.out.println(Arrays.toString(array));
+        /*查找元素76的位置(非递归算法)*/
+        System.out.println(myBinarySearch(array, 76));
+ 
+        System.out.println(Arrays.toString(array));
+        //查找元素55的位置
+        System.out.println(recurBinarySearch(array,55,0,array.length-1));
+    }
+ 
+    /**
+     *二分法查找元素的位置 非递归算法
+     *
+     * @param array
+     * @param value
+     * @return
+     */
+    public static int myBinarySearch(int array[], int value) {
+        int low = 0;
+        int high = array.length - 1;
+        while (low <= high) {
+            int mid = (low + high) / 2;
+            if (array[mid] == value) {
+                return mid;
+            }
+            if (array[mid] > value) {
+                high = mid - 1;
+            }
+            if (array[mid] < value) {
+                low = mid + 1;
+            }
+        }
+        return -1;
+    }
+ 
+    /**
+     * 二分法查找元素的位置 递归算法
+     * @param array
+     * @param value
+     * @param low
+     * @param high
+     * @return
+     */
+    public static int recurBinarySearch(int array[], int value, int low, int high) {
+        int mid;
+        mid = (low + high) / 2;
+        if (low > high) {
+            return -1;
+        }
+        if (array[mid] == value) {
+            return mid;
+        } else if (array[mid] > value) {
+            return recurBinarySearch(array, value, low, mid - 1);
+        } else {
+            return recurBinarySearch(array, value, mid + 1, high);
+        }
+ 
+    }
+
+
