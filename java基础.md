@@ -380,3 +380,16 @@ active工作流中的问题
     @Resource 先通过参数名(byName  例如默认按照Bean中的id...)，
     而后是类型
 3、@Autowired + @Qualifier("...") = @Resource(name="...")
+
+
+
+
+
+## 流量限制
+
+### 1、采用Nginx方法来限制 [参考网址](<https://www.cnblogs.com/hukey/p/10498544.html>)
+
+### 2、springcloud 采用getway来限制
+
+### 3、aop方式
+
