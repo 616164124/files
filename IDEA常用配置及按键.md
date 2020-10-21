@@ -1,4 +1,6 @@
-# IDEA 快捷键
+# IDEA 快捷键/设置
+
+<font color=#ee1111 > 项目开发过程中将.idea文件复制一份，避免在添加内容时产生项目目录错乱的结果</font>
 
 1、Ctrl+N按名字搜索类
 
@@ -32,9 +34,27 @@ shift+shift非常强大，可搜索类、资源、配置项、方法等，还能
 
 IDEA 风格 ctrl + alt +B     或者     Ctrl+Alt+鼠标左键
 
+9、打开service窗口，将下面内容复制到项目中.idea文件夹中的workspace.xml  后重启idea
 
-
-
+```<component name="RunDashboard">
+ <component name="RunDashboard">
+    <option name="configurationTypes">
+      <set>
+        <option value="SpringBootApplicationConfigurationType" />
+      </set>
+    </option>
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+```
 
 ## 设置
 

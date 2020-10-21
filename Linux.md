@@ -75,3 +75,4 @@ JAVA_HOME=/usr/jdk/jdk1.8
 
 
 运行命令：source /etc/profile 重新加载profile使配置立即生效
+

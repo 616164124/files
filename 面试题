@@ -97,7 +97,7 @@ springJSP代码过多，过于灵活缺乏一个公用的控制器，不适合�
             不要在Cookie中保存敏感信息；
             不要在Cookie中保存没有经过加密的或者容易被解密的敏感信息；
             对从客户端取得的Cookie信息进行严格校验；
-            使用SSL/TLS来传递Cookie信息。        
+            使用SSL/TLS来传递Cookie信息。        
     二、Session
         ①会话劫持（通过获取用户Session ID后，使用该Session ID登录目标账号的攻击方法）
             解决方案： 使用User-Agent检测请求的一致性；设置HttpOnly，可以防止客户端脚本访问这个Cookie，从而有效的防止XSS攻击；关闭透明化Session ID；更改Session名称
@@ -109,9 +109,9 @@ sql注入防范
 使用好处：
 
      (1).代码的可读性和可维护性.
-
+    
      (2).PreparedStatement尽最大可能提高性能.
-
+    
      (3).最重要的一点是极大地提高了安全性.
 
 原理：
@@ -240,12 +240,12 @@ iframe的缺点：
         System.out.println(Arrays.toString(array));
         /*查找元素76的位置(非递归算法)*/
         System.out.println(myBinarySearch(array, 76));
- 
+
         System.out.println(Arrays.toString(array));
         //查找元素55的位置
         System.out.println(recurBinarySearch(array,55,0,array.length-1));
     }
- 
+     
     /**
      *二分法查找元素的位置 非递归算法
      *
@@ -270,7 +270,7 @@ iframe的缺点：
         }
         return -1;
     }
- 
+     
     /**
      * 二分法查找元素的位置 递归算法
      * @param array
@@ -292,7 +292,7 @@ iframe的缺点：
         } else {
             return recurBinarySearch(array, value, mid + 1, high);
         }
- 
+     
     }
 
 

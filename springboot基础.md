@@ -92,3 +92,7 @@ rabbit采用**轮询**的方式将消息平均发送给消费者
 @RequestParam(value = "id", required = false, defaultValue = "0")
 ```
 
+## springboot杂谈
+
+通信无状态链接 http rest   弊端：<font color=#ee1111 >每请求占一个连接</font>
+
