@@ -6,17 +6,29 @@
 
 2、&&和& 两者都是逻辑与的运算符，&&具有短路的功能，&可以用作位运算符 例如int a = 2&3;结果为2；int a = 2&1；结果为0；
 
-3、值传递与引用传递 ：
+3、值传递与引用传递 ：（java只有值传递）
 
 ​	(1)值传递传的是值的副本，副本的改变不会影响到原变量；
 
 ​	(2)引用传递就是将一个堆内存空间的使用权交给多个栈内存空间，每个栈内存空间都可以对堆内存空间进行修改
 
-​	要看具体方法属于哪种？？
+<font color=#ee11111>对象的引用存放在栈内存中，对象实例在堆内存中</font>
 
-4、java中跳出当前多重嵌套循环？第一种：在最外层循环语句前定义一个标号，循环体内任意位置都可以使用带有标号的break语句跳出外层循环，结束整个循环。缺点若代码片段太长，不易读
+java方法参数的使用情况：
 
-​							第二种：使用boolean变量做flag，作为外层循环体结束的条件，赋予变量带有业务意义的名字。
+a、一个方法不能修改一个基本数据类型的参数（即布尔型和数值型）
+
+b、一个方法可以改变一个对象参数的状态
+
+c、一个方法不能让对象参数引用一个新的对象
+
+​	
+
+4、java中跳出当前多重嵌套循环？
+
+第一种：在最外层循环语句前定义一个标号，循环体内任意位置都可以使用带有标号的break语句跳出外层循环，结束整个循环。缺点若代码片段太长，不易读；
+
+第二种：使用boolean变量做flag，作为外层循环体结束的条件，赋予变量带有业务意义的名字。
 
 ​						
 
@@ -115,6 +127,92 @@
 
 19、异常65
 
+20、Math.round(11.5)   为  12    Math.round(-11.5)  为   11
+
+21、float f = 3.2  不正确 精度缺失
+
+22、访问修饰符
+
+![1603563117835](assets/1603563117835.png)
+
+22、final，finally，finalize的区别：
+
+![1603563410385](assets/1603563410385.png)
+
+
+
+23、一个类FATHER被其他类SON继承
+
+```java
+/**
+ * projectName: JUC   
+ * fileName: FatherAndSon.java  
+ * packageName: Interview   
+ * copyright(c) 2017-2020 xxx公司  
+ */
+package Interview;
+
+/**
+ * @version: V1.0
+ * @author: mikael
+ * @className: FatherAndSon
+ * @packageName: Interview
+ * @description:构造方法 在	生成类的对象是自动执行，无需调用
+ **/
+public class FatherAndSon {
+  public static void main(String[] args) {
+      Son son = new Son();
+  }
+}
+
+class Father{
+    private int age;
+    public Father() {
+    System.out.println("father Father()");
+    }
+
+   public Father(int age) {
+    System.out.println("father Father(int age)");
+        this.age = age;
+    }
+}
+
+class Son extends Father{
+    private int age;
+    public Son() {
+    System.out.println("son Son()");
+    }
+
+   public Son(int age) {
+    System.out.println("Son son(int age)");
+        this.age = age;
+    }
+
+    public Son(int age, int age1) {
+        super(age);     //没有这个行怎会报错
+        this.age = age1;
+    }
+}
+```
+
+
+
+
+
+error与exception的区别
+
+![1603619101976](assets/1603619101976.png)
+
+### Java--getClass()和.Class的区别
+
+------springboot中测试@Test 中，必须用的 . class形式
+
+ getClass方法，有多态能力，运行时可以返回子类的类型信息，
+
+ .class是没有多态的，是静态解析的，编译时可以确定类型信息。
+
+
+
 ## 强软弱虚
 
 强： object o=new object（）
@@ -125,7 +223,7 @@
 
 虚：
 
-## 抽象类、接口的区别
+## 抽象类、接口 、普通类的区别
 
 1、抽象类就是用来被继承了，所以<font color=#ee1111 >不能用final修饰 </font> 。
 
@@ -136,6 +234,12 @@
 a、接口里面所有的方法都是public，抽象类可以有private，protected
 
 b、类可以实现多个接口，只能继承一个类
+
+壹、普通类可以直接实例化，抽象类不能直接实例化
+
+贰、普通类不能包含抽象方法，抽象类可以有抽象方法F
+
+抽象类就是让人拿来继承的，所以不能被<font color=#ee11111>final</font>修饰
 
 # 多线程
 
@@ -183,21 +287,21 @@ b、类可以实现多个接口，只能继承一个类
 
 26、线程的几种状态？
 
-​	新建 new
+[参考网址](https://blog.csdn.net/pange1991/article/details/53860651?utm_medium=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-2.channel_param&depth_1-utm_source=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-2.channel_param)
 
-​	就绪 放在可运行线程池中，等待被线程调度中，获取cpu
+```java
+1. 初始(NEW)：新创建了一个线程对象，但还没有调用start()方法。
+2. 运行(RUNNABLE)：Java线程中将就绪（ready）和运行中（running）两种状态笼统的称为“运行”。
+线程对象创建后，其他线程(比如main线程）调用了该对象的start()方法。该状态的线程位于可运行线程池中，等待被线程调度选中，获取CPU的使用权，此时处于就绪状态（ready）。就绪状态的线程在获得CPU时间片后变为运行中状态（running）。
+3. 阻塞(BLOCKED)：表示线程阻塞于锁。
+4. 等待(WAITING)：进入该状态的线程需要等待其他线程做出一些特定动作（通知或中断）。
+5. 超时等待(TIMED_WAITING)：该状态不同于WAITING，它可以在指定的时间后自行返回。
+6. 终止(TERMINATED)：表示该线程已经执行完毕。
+```
 
-​	运行 获得了cpu
+ 这6种状态定义在Thread类的State枚举中，可查看源码进行一一对应。 
 
-​	阻塞 
 
-​		等待阻塞 wait（）
-
-​		同步阻塞 获取对象的同步锁，同步锁被别人的线程占用
-
-​		其他阻塞 执行了sleep（） 或者join（）方法
-
-​	死亡 
 
 27、run() 和start（）区别
 
@@ -286,7 +390,11 @@ new ---》》 runnable ---    》》 running  ---》》      block -----------�
 
 3、当你执行一个线程的start方法时，此时至少有两个线程，一个是调用你的线程，另一个是执行run方法的线程
 
+4、阻塞队列（）
 
+![image-20201105143709533](assets/image-20201105143709533.png)
+
+5、线程池
 
 # **集合**
 
@@ -325,17 +433,19 @@ new ---》》 runnable ---    》》 running  ---》》      block -----------�
 
 36、hashmap扩容
 
-​		当hashmap中的元素个数超过数组大小 *  loadFactor时，就会进行数组扩容，loadFactor的默认值为0.75，也就是说，默认情况下，数组大小为16，那么当hashmap中元素个数超过 16* * 0.75=12的时候，
+JDK1.8 HashMap两种扩容的情况。
+1，当map实际数量等于threshold容量的阈值时，会进行两倍扩容。
+2，当map中数组中某个桶的链表长度大于树形化阈值TREEIFY_THRESHOLD=8时，并且map元素的数量小于树形化最小容量MIN_TREEIFY_CAPACITY=64时候，容量进行两倍扩容。否则树形化阈值8并且map元素个数大于64时，进行链表转红黑树。
 
-就把数组的大小扩展为2 * 16=32，即扩大一倍，然后重新计算每个元素在数组中的位置，而这是一个非常消耗性能的操作，所以如果我们已经预知hashmap中元素的个数，
+MIN_TREEIFY_CAPACITY=64，在树化过程时，当map长度小于这个值时，会再次扩容，不会走树化过程。
 
 *那么预设元素的个数能够有效的提高hashmap的性能。比如说，我们有1000个元素new HashMap(1000), 但是理论上来讲new HashMap(1024)更合适，*
 
-*不过上面annegu已经说过，即使是1000，hashmap也自动会将其设置为1024。 但是new HashMap(1024)还不是更合适的，因为0.75*1000 < 1000, 也就是说为了让0.75 * size > 1000, 
+*不过上面annegu已经说过，即使是1000，hashmap也自动会将其设置为1024。 但是new HashMap(1024)还不是更合适的，因为0.75*  *1000 < 1000, 也就是说为了让0.75 * size > 1000, 
 
 我们必须这样new HashMap(2048)才最合适，既考虑了&的问题，也避免了resize的问题。
 
-37、List Map Set 三个接口
+37、List，Map， Set 三个接口
 
 		List与Set都是单列元素的集合，它们有一个功共同的父接口Collection。
 ​	Set里面不允许有重复的元素，
@@ -354,7 +464,9 @@ new ---》》 runnable ---    》》 running  ---》》      block -----------�
 
 38、set里的元素不能重复的，那么用什么方法来区分重复与否?
 
+39、 Fail-Fast 机制,多个线程对集合进行结构上的改变(crud)有可能产生Fail-Fast 机制		ConcurrentModificationException      [参考网址](https://blog.csdn.net/u012926924/article/details/50452411)
 
+ 遍历那些非线程安全的数据结构时，尽量使用迭代器 
 
 
 
@@ -372,15 +484,15 @@ new ---》》 runnable ---    》》 running  ---》》      block -----------�
 
 ## 多线程的锁有3种
 
-NSLock
+1、NSLock
 NSLock是Cocoa提供给我们最基本的锁对象，这也是我们经常使用的，除lock和unlock外，NSLock还提供了tryLock和lockBeforeDate:两个方法，前一个方法会尝试加锁，如果锁不可用（已经被锁住），并不会阻塞线程，直接返回NO。后一个方法则会在指定的Date之前尝试加锁，如果在指定的时间内都不能加锁，则返回NO
- synchronized（互斥锁）
+synchronized（互斥锁）
 synchronized会创建一个异常捕获handler和一些内部的锁，所以使用@synchronized替换普通锁的代价是要付出更多的时间消耗
 创建给给@synchronized指令的对象是一个用来区别保护块的唯一标识符。如果你在两个不同的线程里面执行上述方法，每次在一个线程传递了一个不同的对象给anObj参数，那么每次都将会拥有它的锁，并持续处理，中间不会被其他线程阻塞。然而如果你传递的是同一个对象，那么多个线程中的一个线程会首先获得该锁，而其他线程将会被阻塞直到第一个线程完成它的临界区
 作为一个预防措施。@synchronized块隐式的添加一个异常处理例程来保护代码，该处理例程会在异常抛出的时候自动的释放互斥锁，这就意味着为了使用@synchronized指令，你必须在你的代码中启用异常处理。如果你不想让隐式的异常处理例程带来额外的开销，那么可以使用其他的锁
 atomic
 atomic只是给成员变量的set和get方法加了一个锁，防止多线程一直去读写这个成员变量。但这也仅仅是对读写的锁定，并不是线程安全。而且使用atomic比nonatomic慢了将近20倍
-OSSpinlock
+2、OSSpinlock
 自旋锁
 耗时最少
 自旋锁几乎不进入内核，仅仅是重新加载自旋锁
@@ -439,5 +551,4 @@ active工作流中的问题
 
 4、悲观锁 ，for update
 
-5、乐观锁，通过版本号/时间戳实现，（where ）  ？？？<font color=#ee1111> 具体实现语句?????</font>
-
+5、乐观锁，通过版本号/时间戳实现，（where  version=12;）  ？？？<font color=#ee1111> 具体实现语句?????</font> 
