@@ -38,8 +38,6 @@
 
 ### 3.1.1 work queue（工作队列模式）
 
-![](F:\hua\文件\files\jpg\20180805224950612.png)
-
 work queue：两个消费端共同消费同一个队列中的消息，它的特点如下：
 
 一个生产者将消息发给一个队列 多个消费者共同监听一个队列的消息
@@ -92,7 +90,7 @@ rabbit采用**轮询**的方式将消息平均发送给消费者
 @RequestParam(value = "id", required = false, defaultValue = "0")
 ```
 
-## 五、springbootAOP  
+# 五、springbootAOP  
 
 ​	参考网站 https://www.bilibili.com/video/BV1KT4y1G7hs?from=search&seid=2723361983515545802
 
@@ -174,7 +172,43 @@ execution()是最常用的切点函数，其语法如下所示：
  5、*(..):最后这个星号表示方法名，*号表示所有的方法，后面括弧里面表示方法的参数，两个句点表示任何参数。
 ```
 
+# 六、springboot中使用redis的内容
 
+pom.xml
+
+```java
+		<dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-redis</artifactId>
+        </dependency>  
+```
+
+### properties配置文件配置redis信息
+
+```java
+# Redis数据库索引（默认为0）
+spring.redis.database=0
+# Redis服务器地址
+spring.redis.host=127.0.0.1
+# Redis服务器连接端口
+spring.redis.port=6379
+# Redis服务器连接密码（默认为空）
+spring.redis.password=
+# 连接池最大连接数（使用负值表示没有限制）
+spring.redis.jedis.pool.max-active=20
+# 连接池最大阻塞等待时间（使用负值表示没有限制）
+spring.redis.jedis.pool.max-wait=-1
+# 连接池中的最大空闲连接
+spring.redis.jedis.pool.max-idle=10
+# 连接池中的最小空闲连接
+spring.redis.jedis.pool.min-idle=0
+# 连接超时时间（毫秒）
+spring.redis.timeout=1000
+```
+
+将java对象与redis中的string之间的转化（使用**fastjson**）
+
+​	https://www.cnblogs.com/ibigboy/p/11124524.html
 
 
 
