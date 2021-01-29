@@ -2738,6 +2738,8 @@ npm install -g @vue/cli-init
 # 使用脚手架工具初始化你的项目
 # webpack-simple是一种工程模板
 vue init webpack-simple 项目名称
+#可以采用页面的形式来创建项目
+vue ui 
 
 # 进入你初始化好的项目
 cd 项目路径

@@ -1,5 +1,9 @@
 # **Redis** （版本：3.2.100）
 
+<font color=red size=6>help  ttl   //查看命令的作用</font>
+
+<font color=red size=6>help @string   //查看string类型的命令</font>
+
 ## 命令
 
 - 连接操作相关的命令

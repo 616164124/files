@@ -55,13 +55,13 @@ c、一个方法不能让对象参数引用一个新的对象
 
   		访问权限   类   包  子类  其他包
 
-  　　　　  public     ∨   ∨    ∨     ∨          （对任何人都是可用的）
+  　　　public     ∨   ∨     ∨      ∨          （对任何人都是可用的）
 
-   　　　　 protect    ∨   ∨   ∨     ×　　　 （继承的类可以访问以及和private一样的权限）
+   　　   protect    ∨   ∨    ∨      ×　　　 （继承的类可以访问以及和private一样的权限）
 
-   　　　　 default    ∨   ∨   ×     ×　　　 （包访问权限，即在整个包内均可被访问）
+   　　   default    ∨   ∨    ×       ×　　　 （包访问权限，即在整个包内均可被访问）
 
-   　　　　 private    ∨   ×   ×     ×　　　 （除类型创建者和类型的内部方法之外的任何人都不能访问的元素）
+   　　    private    ∨   ×    ×       ×　　　 （除类型创建者和类型的内部方法之外的任何人都不能访问的元素）
 
 6、switch（exp）中的exp包含 byte，short，char，int , Enum，String，Character，Byte，Short，Integer ；long类型可以写但是执行会报错。
 
@@ -130,10 +130,6 @@ c、一个方法不能让对象参数引用一个新的对象
 20、Math.round(11.5)   为  12    Math.round(-11.5)  为   11
 
 21、float f = 3.2  不正确 精度缺失
-
-22、访问修饰符
-
-![1603563117835](assets/1603563117835.png)
 
 22、final，finally，finalize的区别：
 
