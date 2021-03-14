@@ -413,6 +413,18 @@ public class Application {
 
 
 
+# 十、spring-cglib
+
+大致的实现
+
+# ![image-20210307031312746](assets/image-20210307031312746.png)
+
+
+
+![image-20210307031345702](assets/image-20210307031345702.png)
+
+实现时重要的类ConfigurationClassEnhancer中的判断
+
 # 布隆过滤器
 
  https://blog.csdn.net/ttaannkkee/article/details/102502921
@@ -469,11 +481,11 @@ configurer.addPathPrefix("/api", c -> c.isAnnotationPresent(RestController.class
 **createApplicationContext：创建spring的容器**
 
 1.根据不同的webApplicationType设置不同的contextClass（容器的class类型），然后生成不同的容器实例对象
- 2.生成容器实例的时候，对于Kotlin类使用'primary'构造函数实例化一个类，如果不是就使用默认构造函数，根据得到构造函数生成实例对象，如果构造函数不是公共的，我们尝试去改变并访问
+2.生成容器实例的时候，对于Kotlin类使用'primary'构造函数实例化一个类，如果不是就使用默认构造函数，根据得到构造函数生成实例对象，如果构造函数不是公共的，我们尝试去改变并访问
 
 **prepareContext:准备容器，在准备刷新容器前准备好容器**
 
-1.context.setEnvironment(environment)：设置spring容器的environment
+ 1.context.setEnvironment(environment)：设置spring容器的environment
  2.postProcessApplicationContext(context)：设置beanNameGenerator和resourceLoader
  3.applyInitializers(context)：调用ApplicationContextInitializer的initialize来初始化context，其中还检测各个ApplicationContextInitializer是否接受该类型的容器
  4.listeners.contextPrepared(context);即调用SpringApplicationRunListener的contextPrepared方法，但目前是个空实现。

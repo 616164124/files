@@ -6,6 +6,8 @@
 
 https://zhuanlan.zhihu.com/p/99354824   IDEA 插件推荐安装
 
+https://blog.csdn.net/qq_44695727/article/details/105680530  idea中的设置
+
 1、Ctrl+N按名字搜索类
 
 相当于eclipse的ctrl+shift+R，输入类名可以定位到这个类文件，就像idea在其它的搜索部分的表现一样，搜索类名也能对你所要搜索的内容多个部分进行匹配，而且如果能匹配的自己写的类，优先匹配自己写的类，甚至不是自己写的类也能搜索。

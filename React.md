@@ -20,17 +20,51 @@ let const var 的区别
 
 网站 https://www.cnblogs.com/zhaoxiaoying/p/9031890.html
 
-UI 网站
+## UI 网站
 
-https://material-ui.com/zh/
+https://material-ui.com/zh/     图标 fontawesome
 
-组件通信
+首先是要用npm把组件相关都安装一下：
+
+```bash
+$ npm i --save @fortawesome/fontawesome-svg-core
+
+$ npm i --save @fortawesome/free-solid-svg-icons
+
+$ npm i --save @fortawesome/react-fontawesome
+```
+
+另外一些常用图标：
+
+```bash
+$ npm i --save @fortawesome/free-brands-svg-icons
+$ npm i --save @fortawesome/free-regular-svg-icons
+```
+
+显然，我这里安装的图标都是穷人版，如果你是设计大佬，可以付费下载带pro的包。
+
+此时，安装的包就已经达到我的需求了，比如我要一个问号，首先引入：
+
+```javascript
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faQuestionCircle } from '@fortawesome/free-regular-svg-icons'
+```
+
+然后在代码中：
+
+```javascript
+<FontAwesomeIcon icon={faQuestionCircle} />
+```
+
+## 组件通信
 
 https://blog.csdn.net/xingfuzhijianxia/article/details/86151243
 
 **{} 为变量** 
 
 **{{}} 为对象**
+
+# 开始
 
 1、安装脚手架create react app
 
@@ -194,8 +228,6 @@ let color = {
 ```jsx
 
 ```
-
-
 
 2、类组件
 

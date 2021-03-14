@@ -1,5 +1,35 @@
 # css
 
+## 小知识点
+
+工具网站：https://www.learnfk.com/course-css
+
+.点号选中的是class，#选中的是id
+
+各个浏览器是否适配需要添加前缀
+
+1in = 2.54cm = 25.4 mm = 72pt = 6pc = 96px 
+
+可以理解为 1厘米 等于 37.79px
+
+css引入
+
+<link>里面的属性有type、rel、href，其中type固定为text/css，rel（即样式表）固定为stylesheet，href自然指的就是css文件的地址了，语法格式为：
+
+  <link type="text/css" rel="stylesheet"  href="css文件的存放地址">
+
+```html
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=<device-width>, initial-scale=1.0">
+    <title>day01</title>
+     
+  <link rel="stylesheet" type="text/css" href="./styel.css" />
+</head>
+```
+
+
+
 css
 
 ```css
@@ -49,3 +79,44 @@ background      					: 简写属性，作用是将背景属性设置在一个声
 
   font:italic small-caps bold 15px georgia;  //将按照这个顺序 ：[ [ <' [font-style](font-style.htm) '> || <' [font-variant](font-variant.htm) '> || <' [font-weight](font-weight.htm) '> ]? <' [font-size](font-size.htm) '> [ / <' [line-height](../text/line-height.htm) '> ]? <' [font-family](font-family.htm) '> ] | caption | icon | menu |  message-box | small-caption | status-bar
 
+## day02
+
+```css
+/*a标签的第一个背景变成绿色*/
+.demo li a:first-child{
+		background-color: #0f0;
+	}
+
+/*a标签的最后一个背景变成绿色*/
+.demo li a:last-child{
+		background-color: #0f0;
+	}
+/*a标签的偶数背景都变成绿色*/
+.demo li a:nth-child(2n){
+		background-color: #0f0;
+	}
+/*a标签的每四个变成绿色*/
+.demo li a:nth-child(4n){
+		background-color: #0f0;
+	}
+/*首字母下沉变大*/
+.demo::first-letter{
+			font-size: 40px;
+			font-weight: bold;
+			float: left;
+		}
+```
+
+
+
+## background-image
+
+background-image: url("../image/1.jpeg"); 
+
+使用时需要配合width 和height一起使用
+
+
+
+### box-shadow
+
+### transform
