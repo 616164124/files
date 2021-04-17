@@ -449,6 +449,8 @@ configurer.addPathPrefix("/api", c -> c.isAnnotationPresent(RestController.class
 
 ## 1、spring中bean的生命周期
 
+aware为通知的意思
+
 ![image-20210107043822838](assets/image-20210107043822838.png)
 
 ## 2、springboot中的run执行顺序
