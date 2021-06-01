@@ -10,3 +10,11 @@ https://blog.csdn.net/nrsc272420199/article/details/85555911   git在工作中�
 
 
 
+
+
+$  git config --global http.sslVerify "false"  
+
+
+
+
+
