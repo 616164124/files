@@ -41,7 +41,7 @@ $ npm i --save @fortawesome/free-brands-svg-icons
 $ npm i --save @fortawesome/free-regular-svg-icons
 ```
 
-显然，我这里安装的图标都是穷人版，如果你是设计大佬，可以付费下载带pro的包。
+显然，我这里安装的图标都是穷人版
 
 此时，安装的包就已经达到我的需求了，比如我要一个问号，首先引入：
 
