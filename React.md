@@ -1,6 +1,6 @@
 # React
 
-安装 cnpm i serve -g  
+安装 cnpm i save -g  
 
  serve .\reactapp\
 
@@ -126,7 +126,7 @@ setInterval(run, 1000);
 
 注意点：
 
-1、jsx必须要有跟节点
+1、jsx必须要有根节点
 
 2、正常的普通HTML元素要小写，如果是大写，默认为是组件
 

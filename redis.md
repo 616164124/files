@@ -37,7 +37,7 @@
   •getset(key, value)：先获取（get ）后（set），返回的是get的值
   •mget(key1, key2,…, key N)：返回库中多个string（它们的名称为key1，key2…）的value
   •setnx(key, value)：如果不存在名称为key的string，则向库中添加string，名称为key，值为value
-  •setex(key, time, value)：向库中添加string（名称为key，值为value）同时，设定过期时间time（秒）
+  •setex(key, time, value)：向库中添加string（名称为key，值为value）同时，设定过期时间time（秒）若原来已经存在key则覆盖掉，每次都是新添加的
   •mset(key1, value1, key2, value2,…key N, value N)：同时给多个string赋值，名称为key i的string赋值value i
   •msetnx(key1, value1, key2, value2,…key N, value N)：如果所有名称为key i的string都不存在，则向库中添加string，名称key i赋值为value i
   •incr(key)：名称为key的string增1操作 <font color=#0000ff size=2>string的值必须为数字</font>
@@ -251,3 +251,86 @@ i+1开始的list执行pop操作
 •monitor：实时转储收到的请求
 •slaveof：改变复制策略设置
 •config：在运行时配置Redis服务器
+
+
+
+
+
+## 1、场景
+
+### 1、查询用户是否连续签到
+
+```js
+// SETBIT  用户ID+月份  日期  value
+
+SETBIT  Sign:2094592473:202110  0       1
+SETBIT  Sign:2094592473:202110  7       1
+SETBIT  Sign:2094592473:202110  8       1
+SETBIT  Sign:2094592473:202110  9       0
+SETBIT  Sign:2094592473:202110  10      1
+SETBIT  Sign:2094592473:202110  11      1
+SETBIT  Sign:2094592473:202110  12      1
+SETBIT  Sign:2094592473:202110  13      0
+SETBIT  Sign:2094592473:202110  14      1
+SETBIT  Sign:2094592473:202110  15      1
+SETBIT  Sign:2094592473:202110  16      1
+SETBIT  Sign:2094592473:202110  17      1
+SETBIT  Sign:2094592473:202110  18      1
+SETBIT  Sign:2094592473:202110  19      1
+SETBIT  Sign:2094592473:202110  20      1
+
+//  获取10月31天的签到数据
+BITFIELD Sign:2094592473:202110 get u31 0 7
+1) (integer) 14547968
+
+// 转换成二进制
+110111011111110000000000
+
+// 判断是否有连续7天的1
+```
+
+### 2、查询用户10月 签到总次数
+
+```js
+BITCOUNT Sign:2094592473:202110
+```
+
+
+
+###  3、指定时间内，判断多少人签到连续签到成功
+
+``` js
+// SETBIT 日期  用户ID  value
+
+SETBIT 20211015 10 1
+SETBIT 20211016 10 1
+SETBIT 20211017 10 1
+SETBIT 20211018 10 1
+
+SETBIT 20211015 20 1
+SETBIT 20211016 20 0
+SETBIT 20211017 20 1
+SETBIT 20211018 20 1
+
+SETBIT 20211015 30 1
+SETBIT 20211016 30 1
+SETBIT 20211017 30 1
+SETBIT 20211018 30 1
+
+SETBIT 20211015 40 1
+SETBIT 20211016 40 0
+SETBIT 20211017 40 0
+SETBIT 20211018 40 1
+
+BITOP AND destmap 20211015 20211016 20211017 20211018
+//获取前8天签到的数据
+bitfield 888:202205 get u8 0             
+BITCOUNT destmap
+2
+
+```
+
+
+
+
+

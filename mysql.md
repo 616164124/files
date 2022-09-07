@@ -34,3 +34,7 @@ id LIMIT 0,10;
 
 不要拿 varchar 当索引，特别是长度比较长的一般是把对应字段转换下， md5 后的值转换成整型存储，然后 md5 后的字段作为索引
 
+### 造成锁表的情况
+
+当使用select … for update …where …时，mysql进行row lock还是table lock只取决于是否能使用索引（例如主键，unique字段），能则为行锁，否则为表锁；未查到数据则无锁。而 使用’<>’,'like’等操作时，索引会失效，自然进行的是table lock。
+
