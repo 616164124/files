@@ -1,3 +1,7 @@
+# Linux系统（CentOS 7(阿里云14)）
+
+## 一、命令篇
+
 ### (1)sudo 命令  
 
 xzm@ubuntu:~$  sudo
@@ -28,53 +32,7 @@ su "king" 或者 exit回到用户权限
 
 ### (5)kill
 
-在使用 kill -9 前，应该先使用 kill -15，给目标进程一个清理善后工作的机会。如果没有，可能会留下一些不完整的文件或状态，从而影响服务的再次启动。
-
-
-
-
-
-
-
-# /etc/profile: system-wide .profile file for the Bourne shell (sh(1))
-# and Bourne compatible shells (bash(1), ksh(1), ash(1), ...).
-
-if [ "${PS1-}" ]; then
-  if [ "${BASH-}" ] && [ "$BASH" != "/bin/sh" ]; then
-    # The file bash.bashrc already sets the default PS1.
-    # PS1='\h:\w\$ '
-    if [ -f /etc/bash.bashrc ]; then
-      . /etc/bash.bashrc
-    fi
-  else
-    if [ "`id -u`" -eq 0 ]; then
-      PS1='# '
-    else
-      PS1='$ '
-    fi
-  fi
-fi
-
-if [ -d /etc/profile.d ]; then
-  for i in /etc/profile.d/*.sh; do
-    if [ -r $i ]; then
-      . $i
-    fi
-  done
-  unset i
-fi
-#java_home
-JAVA_HOME=/usr/jdk/jdk1.8
-      PATH=$JAVA_HOME/bin:$PATH
-      CLASSPATH=.:$JAVA_HOME/lib/dt.jar:
-      $JAVA_HOME/lib/tools.jar
-      export JAVA_HOME
-      export PATH
-      export CLASSPATH
-
-
-
-
+在使用 kill -9 前，应该先使用 kill -15，给目标进程一个清理善后工作的机会。如果没有，可能会留下一些不完整的文件或状态（数据丢失或者终端无法恢复到正常状态等），从而影响服务的再次启动。
 
 
 

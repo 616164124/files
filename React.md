@@ -66,9 +66,11 @@ https://blog.csdn.net/xingfuzhijianxia/article/details/86151243
 
 # 开始
 
-1、安装脚手架create react app
+1、安装脚手架create react app（用idea来创建速度较快）
 
-cnpm install -g create-react-app
+```js
+npx create-react-app my-app
+```
 
 2、创建项目
 

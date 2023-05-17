@@ -131,7 +131,7 @@ b、由Dom对象绑定到模型数据，Dom对象的值改变，模型数据就�
 
 ### 1.2.3 v-on 指令
 
-methos中获取数据要用this获取data中的变量
+methods中获取数据要用this获取data中的变量
 
 ```html
 
